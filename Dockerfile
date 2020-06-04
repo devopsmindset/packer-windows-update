@@ -21,4 +21,4 @@ RUN wget https://github.com/rgl/packer-provisioner-windows-update/releases/downl
 RUN tar -xf packer-provisioner-windows-update-linux.tgz
 RUN rm packer-provisioner-windows-update-linux.tgz
 
-ENTRYPOINT ["/bin/packer"]
+ENTRYPOINT ["/bin/bash"]
