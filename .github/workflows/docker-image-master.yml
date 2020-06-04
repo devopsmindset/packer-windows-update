@@ -23,4 +23,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           add_git_labels: true
           repository: ${{ secrets.DOCKER_USERNAME }}/packer-windows-update
-          tags: stable-${{ matrix.image_name }}-${{ matrix.image_version }}
+          tags: latest
