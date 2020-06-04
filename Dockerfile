@@ -16,8 +16,7 @@ RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
 RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
 RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
-RUN cd /bin
-RUN wget -P /bin https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz
+RUN wget -P /bin/ https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz
 RUN tar -xf /bin/packer-provisioner-windows-update-linux.tgz
 RUN rm /bin/packer-provisioner-windows-update-linux.tgz
 
