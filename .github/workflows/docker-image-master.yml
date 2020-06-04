@@ -22,6 +22,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           add_git_labels: true
-          repository: ${{ secrets.DOCKER_USERNAME }}/kubectl
+          repository: ${{ secrets.DOCKER_USERNAME }}/packer-windows-update
           tags: stable-${{ matrix.image_name }}-${{ matrix.image_version }}
-          build_args: IMAGE=${{ matrix.image_name }}:${{ matrix.image_version }}
