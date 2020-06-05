@@ -1,5 +1,5 @@
 # packer-windows-update
-##Description:
+## Description:
 Docker image created from hashicorp/packer image that includes packer-provisioner-windows-update plugin.\
 It uses an Alpine image base.
 ## Usage
