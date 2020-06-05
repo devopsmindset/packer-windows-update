@@ -9,7 +9,13 @@ RUN apt-get -y install tar
 RUN apt-get -y install wget
 RUN apt-get -y install git
 
-RUN apt-get -y install packer
+ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
+ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
+
+RUN sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
+RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
+RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
+RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
 RUN wget https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz
 RUN tar -xf packer-provisioner-windows-update-linux.tgz
