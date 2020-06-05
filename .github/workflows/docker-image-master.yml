@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+      - feature/debian-image
 
 jobs:
   push_to_registry:
@@ -23,4 +24,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           add_git_labels: true
           repository: devopsmindset/packer-windows-update
-          tags: latest
+          tags: debian-buster
