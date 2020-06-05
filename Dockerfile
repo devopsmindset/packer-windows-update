@@ -5,17 +5,12 @@ ENV PACKER_VERSION=1.5.6
 ENV PACKER_SHA256SUM=2abb95dc3a5fcfb9bf10ced8e0dd51d2a9e6582a1de1cab8ccec650101c1f9df
 
 RUN apt-get -y update
-RUN apt-get -y install tar
 RUN apt-get -y install wget
 RUN apt-get -y install git
+RUN apt-get -y install unzip
 
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
-
-RUN sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS
-RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS
-RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin
-RUN rm -f packer_${PACKER_VERSION}_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip
+RUN unzip packer_${PACKER_VERSION}_linux_amd64.zip -d bin/
 
 RUN wget https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz
 RUN tar -xf packer-provisioner-windows-update-linux.tgz
