@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV PACKER_VERSION=1.5.1 \
+ENV PACKER_VERSION=1.5.6 \
     PACKER_SHA256SUM=2abb95dc3a5fcfb9bf10ced8e0dd51d2a9e6582a1de1cab8ccec650101c1f9df
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./ \
