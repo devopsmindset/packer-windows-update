@@ -14,7 +14,8 @@ RUN apk update && apk add --no-cache wget && apk add --no-cache tar && apk add -
     wget https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz && \
     tar -xf packer-provisioner-windows-update-linux.tgz && \
     rm packer-provisioner-windows-update-linux.tgz && \
-    mv packer-provisioner-windows-update bin/packer-provisioner-windows-update
+    mv packer-provisioner-windows-update bin/packer-provisioner-windows-update && \
+	chmod 777 bin/packer-provisioner-windows-update
 
 
 ENTRYPOINT ["/bin/bash"]
