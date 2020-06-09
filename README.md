@@ -4,7 +4,7 @@ Docker image created from hashicorp/packer image that includes packer-provisione
 It uses an Alpine image base.
 ## Usage
 ````
-docker pull ricardf/packer-windows-update:latest
+docker pull devopsmindset/packer-windows-update:latest
 docker run -i -t <args> devopsmindset/packer-windows-update:latest <command>
 ````
 ## Current versions
