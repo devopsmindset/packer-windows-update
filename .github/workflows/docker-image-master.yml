@@ -1,5 +1,13 @@
 name: Docker Image stable
 
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+      - feature/debian-image
+
 jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
@@ -16,4 +24,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           add_git_labels: true
           repository: devopsmindset/packer-windows-update
-          tags: latest
+          tags: ubuntu
