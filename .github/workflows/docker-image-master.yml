@@ -7,6 +7,7 @@ on:
     branches:
       - master
       - feature/debian-image
+      - feature/ubuntu
 
 jobs:
   push_to_registry:
