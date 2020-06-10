@@ -1,14 +1,9 @@
-FROM alpine
+FROM ubuntu:18.04
 
-ENV PACKER_VERSION=1.5.6 \
-    PACKER_SHA256SUM=2abb95dc3a5fcfb9bf10ced8e0dd51d2a9e6582a1de1cab8ccec650101c1f9df
+ENV PACKER_VERSION=1.5.6
 
-ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./ \
-    https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
-
-RUN apk update && apk add --no-cache wget && apk add --no-cache tar && apk add --update git bash wget openssl && \
-    sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
-    sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
+RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && \
+    wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
     rm -f packer_${PACKER_VERSION}_linux_amd64.zip && \
     wget https://github.com/rgl/packer-provisioner-windows-update/releases/download/v0.9.0/packer-provisioner-windows-update-linux.tgz && \
