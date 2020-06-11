@@ -6,7 +6,7 @@ ENV PACKER_VERSION=1.5.6 \
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./ \
     https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
 
-RUN apk update && apk add --no-cache wget && apk add --no-cache tar && apk add --update git bash wget openssl && \
+RUN apk update && apk add --no-cache wget && apk add --no-cache tar && apk add --update git bash wget openssl && apk add --no-cache curl && \
     sed -i '/.*linux_amd64.zip/!d' packer_${PACKER_VERSION}_SHA256SUMS && \
     sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
