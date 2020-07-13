@@ -24,7 +24,8 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
+# Create config folders
+RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
 
 # Install gDrive
 RUN go get github.com/prasmussen/gdrive
