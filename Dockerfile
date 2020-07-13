@@ -29,5 +29,4 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 # Install gDrive
 RUN go get github.com/prasmussen/gdrive
 
-
 ENTRYPOINT ["/bin/bash"]
