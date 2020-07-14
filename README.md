@@ -1,6 +1,6 @@
 # packer-windows-update
 ## Description:
-Docker image created from hashicorp/packer image that includes packer-provisioner-windows-update plugin.\
+Docker image created from hashicorp/packer image that includes packer-provisioner-windows-update plugin. It also includes golang and gdrive tool.\
 It uses an Alpine image base.
 ## Usage
 ````
