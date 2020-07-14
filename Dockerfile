@@ -12,5 +12,17 @@ RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && ap
     mv packer-provisioner-windows-update bin/packer-provisioner-windows-update && \
 	chmod 777 bin/packer-provisioner-windows-update
 
+RUN apk add --no-cache make musl-dev go
+
+# Configure Go
+ENV GOROOT /usr/lib/go
+ENV GOPATH /go
+ENV PATH /go/bin:$PATH
+
+# Create config folders
+RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
+
+# Install gDrive
+RUN go get github.com/prasmussen/gdrive
 
 ENTRYPOINT ["/bin/bash"]

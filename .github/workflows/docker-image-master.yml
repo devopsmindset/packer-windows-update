@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - master
-      - feature/debian-image
+      - feature/debian-gdrive
 
 jobs:
   push_to_registry:
