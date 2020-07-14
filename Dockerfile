@@ -14,7 +14,7 @@ RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && ap
 	chmod 777 bin/packer-provisioner-windows-update
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
-	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz
+	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
 	mv go /usr/local
 
 # Configure Go
