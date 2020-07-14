@@ -10,3 +10,5 @@ docker run -i -t <args> devopsmindset/packer-windows-update:latest <command>
 ## Current versions
 - Packer 1.5.6
 - packer-provisioner-windows-update 0.9.0
+- GoLang 1.13.11
+- gdrive 2.1.0
