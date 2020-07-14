@@ -1,6 +1,7 @@
 FROM debian:buster
 
 ENV PACKER_VERSION=1.5.6
+ENV GO_VERSION=1.13.3
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
     wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
@@ -12,12 +13,14 @@ RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && ap
     mv packer-provisioner-windows-update bin/packer-provisioner-windows-update && \
 	chmod 777 bin/packer-provisioner-windows-update
 
-RUN apk add --no-cache make musl-dev go
+RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
+	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz
+	mv go /usr/local
 
 # Configure Go
-ENV GOROOT /usr/lib/go
+ENV GOROOT /usr/local/go
 ENV GOPATH /go
-ENV PATH /go/bin:$PATH
+ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 # Create config folders
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
