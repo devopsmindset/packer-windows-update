@@ -14,21 +14,20 @@ RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && ap
     mv packer-provisioner-windows-update bin/packer-provisioner-windows-update && \
 	chmod 777 bin/packer-provisioner-windows-update
 
-RUN apt-get -y update && apt-get -y install build-essential && apt-get -y install zlib1g-dev && \ 
-                         apt-get -y install libncurses5-dev && apt-get -y install libgdbm-dev && \
-						 apt-get -y install libnss3-dev && apt-get -y install libssl-dev && \
-						 apt-get -y install libreadline-dev && apt-get -y install libffi-dev && \
- 					     curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz && \
-					     tar -xf Python-${PYTHON_VERSION}.tar.xz && \
-					     cd Python-${PYTHON_VERSION} && \
-					     configure --enable-optimitzations && \
-					     make && \
-					     make altinstall
+RUN apt-get -y update && apt-get -y install build-essential && apt-get -y install checkinstall && \
+    apt-get -y install libreadline-gplv2-dev && apt-get -y install libncursesw5-dev && apt-get -y install libssl-dev && \
+	apt-get -y install libsqlite3-dev && apt-get -y install tk-dev && apt-get -y install libgdbm-dev && \
+	apt-get -y install libc6-dev && apt-get -y install libbz2-dev && \
+	cd /usr/src && \
+	wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
+	tar xzf Python-${PYTHON_VERSION}.tgz && \
+	cd Python-${PYTHON_VERSION} && \
+	./configure && \
+	make altinstall
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
 	mv go /usr/local
-
 
 # Configure Go
 ENV GOROOT /usr/local/go
