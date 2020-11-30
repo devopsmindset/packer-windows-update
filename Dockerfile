@@ -14,7 +14,7 @@ RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && ap
     mv packer-provisioner-windows-update bin/packer-provisioner-windows-update && \
 	chmod 777 bin/packer-provisioner-windows-update
 
-RUN apt-get -y update && apt-get -y install build-essential && apt-get -y install checkinstall && \
+RUN apt-get -y update && apt-get -y install build-essential && \
     apt-get -y install libreadline-gplv2-dev && apt-get -y install libncursesw5-dev && apt-get -y install libssl-dev && \
 	apt-get -y install libsqlite3-dev && apt-get -y install tk-dev && apt-get -y install libgdbm-dev && \
 	apt-get -y install libc6-dev && apt-get -y install libbz2-dev && \
