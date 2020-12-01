@@ -3,6 +3,7 @@ FROM debian:buster
 ENV PACKER_VERSION=1.5.6
 ENV GO_VERSION=1.13.3
 ENV PYTHON_VERSION=3.6.8
+ENV PYTHON_VERSION_PREFIX=3.6
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
     wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
@@ -24,6 +25,9 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	cd Python-${PYTHON_VERSION} && \
 	./configure && \
 	make altinstall
+
+RUN pip${PYTHON_VERSION_PREFIX} install -upgrade google-api-python-client && \
+    pip${PYTHON_VERSION_PREFIX} install google-auth-oauthlib
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
