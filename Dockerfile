@@ -26,7 +26,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	./configure && \
 	make altinstall
 
-RUN pip${PYTHON_VERSION_PREFIX} install -upgrade google-api-python-client && \
+RUN pip${PYTHON_VERSION_PREFIX} install --upgrade google-api-python-client && \
     pip${PYTHON_VERSION_PREFIX} install google-auth-oauthlib
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
