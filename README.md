@@ -12,3 +12,4 @@ docker run -i -t <args> devopsmindset/packer-windows-update:latest <command>
 - packer-provisioner-windows-update 0.9.0
 - GoLang 1.13.11
 - gdrive 2.1.0
+- Python 3.6.8
