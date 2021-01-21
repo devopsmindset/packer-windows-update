@@ -4,6 +4,7 @@ ENV PACKER_VERSION=1.5.6
 ENV GO_VERSION=1.13.3
 ENV PYTHON_VERSION=3.6.8
 ENV PYTHON_VERSION_PREFIX=3.6
+ENV ANSIBLE_VERSION=2.9.13
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
     wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
@@ -27,6 +28,8 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	make altinstall
 
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
+
+RUN pip${PYTHON_VERSION_PREFIX} install ansible=={ANSIBLE_VERSION}
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
