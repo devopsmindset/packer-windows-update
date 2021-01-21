@@ -29,7 +29,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
-RUN pip${PYTHON_VERSION_PREFIX} install ansible=={ANSIBLE_VERSION}
+RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
