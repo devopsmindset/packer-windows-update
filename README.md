@@ -13,3 +13,4 @@ docker run -i -t <args> devopsmindset/packer-windows-update:latest <command>
 - GoLang 1.13.11
 - gdrive 2.1.0
 - Python 3.6.8
+- Ansible 2.9.13
