@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - master
-      - feature/debian-gdrive
+      - feature/adding_ansible      
 
 jobs:
   push_to_registry:
@@ -24,4 +24,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           add_git_labels: true
           repository: devopsmindset/packer-windows-update
-          tags: debian-buster
+          tags: debian-packer-ansible
