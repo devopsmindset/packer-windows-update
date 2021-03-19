@@ -28,16 +28,9 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	./configure && \
 	make altinstall
 
-RUN pip${PYTHON_VERSION_PREFIX} install azure-storage-blob
-
 RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION} && \
+	pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob && \
     pip${PYTHON_VERSION_PREFIX} install pywinrm
-
-RUN wget http://repository.kiosk.roche.com/thirdparty-local/com.vmware/VMware-ovftool/4/4.4.1/Linux/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle && \
-	chmod 777 VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle && \
-	mkdir /opt/ovftool && \
-	mv VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle /opt/ovftool && \
-    ./VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle --eulas-agreed --console 
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
