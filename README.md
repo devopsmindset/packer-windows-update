@@ -14,3 +14,4 @@ docker run -i -t <args> devopsmindset/packer-windows-update:latest <command>
 - gdrive 2.1.0
 - Python 3.6.8
 - Ansible 2.9.13
+- WMware OVFTool 4.4.1-16812187
