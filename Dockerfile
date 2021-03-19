@@ -29,7 +29,6 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	make altinstall
 
 RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION} && \
-	pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob && \
     pip${PYTHON_VERSION_PREFIX} install pywinrm
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
