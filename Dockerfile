@@ -28,7 +28,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	./configure && \
 	make altinstall
 
-RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
+RUN pip${PYTHON_VERSION_PREFIX} install azure-storage-blob
 
 RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION} && \
     pip${PYTHON_VERSION_PREFIX} install pywinrm
