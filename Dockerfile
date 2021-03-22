@@ -7,15 +7,6 @@ ENV PYTHON_VERSION_PREFIX=3.6
 ENV ANSIBLE_VERSION=2.9.13
 
 
-RUN mkdir /usr/local/share/ca-certificates && cd /usr/local/share/ca-certificates && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_enterprise.crt -O roche_com_enterprise.crt && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_root.crt -O roche_com_root.crt && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/geo_trust.crt -O geo_trust.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20G3%20Root%20CA.crt -O roche_com_CA1_G3.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201%20-%20G2.crt -O roche_com_CA1_G2.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201.crt -O roche_com_CA1.crt && \
-	update-ca-certificates
-
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
     wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
     unzip packer_${PACKER_VERSION}_linux_amd64.zip -d /bin && \
@@ -43,6 +34,16 @@ RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip && \
 	pip${PYTHON_VERSION_PREFIX} install pywinrm && \
 	pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION} && \
 	pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
+
+
+RUN mkdir /usr/local/share/ca-certificates && cd /usr/local/share/ca-certificates && \
+	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_enterprise.crt -O roche_com_enterprise.crt && \
+	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_root.crt -O roche_com_root.crt && \
+	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/geo_trust.crt -O geo_trust.crt && \
+	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20G3%20Root%20CA.crt -O roche_com_CA1_G3.crt && \
+	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201%20-%20G2.crt -O roche_com_CA1_G2.crt && \
+	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201.crt -O roche_com_CA1.crt && \
+	update-ca-certificates
 
 
 RUN wget http://repository.kiosk.roche.com/thirdparty-local/com.vmware/VMware-ovftool/4/4.4.1/Linux/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle && \
