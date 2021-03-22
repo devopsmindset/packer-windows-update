@@ -30,7 +30,8 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	make altinstall
 
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip && \
-	pip${PYTHON_VERSION_PREFIX} install cryptography
+	pip${PYTHON_VERSION_PREFIX} install cryptography && \
+	pip${PYTHON_VERSION_PREFIX} install pywinrm
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
