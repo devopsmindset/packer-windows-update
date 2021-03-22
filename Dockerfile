@@ -21,6 +21,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
     apt-get -y install libreadline-gplv2-dev && apt-get -y install libncursesw5-dev && apt-get -y install libssl-dev && \
 	apt-get -y install libsqlite3-dev && apt-get -y install tk-dev && apt-get -y install libgdbm-dev && \
 	apt-get -y install libc6-dev && apt-get -y install libbz2-dev && \
+	apt-get -y install libffi-dev && apt-get -y install python-dev && \
 	cd /usr/src && \
 	wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz && \
 	tar xzf Python-${PYTHON_VERSION}.tgz && \
@@ -29,7 +30,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	make altinstall
 
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade setuptools && \
-	pip${PYTHON_VERSION_PREFIX} install pywinrm
+	pip${PYTHON_VERSION_PREFIX} install cryptography
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
