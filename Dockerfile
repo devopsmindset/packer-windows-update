@@ -5,6 +5,8 @@ ENV GO_VERSION=1.13.3
 ENV PYTHON_VERSION=3.6.8
 ENV PYTHON_VERSION_PREFIX=3.6
 ENV ANSIBLE_VERSION=2.9.13
+ENV OVFTOOL_VERSION=4.4.1-16812187
+ENV OVFTOOL_INSTALLER=VMware-ovftool-${OVFTOOL_VERSION}-lin.x86_64.bundle
 
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
@@ -35,9 +37,11 @@ RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip && \
 	pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION} && \
 	pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
-
-RUN wget http://repository.kiosk.roche.com/thirdparty-local/com.vmware/VMware-ovftool/4/4.4.1/Linux/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle
-
+RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTALLER}?sv=2020-04-08&si=ovftools-17859976E99&sr=b&sig=xWlrYFVsUg1QYayZ3H9g1qHt%2BKcRWY3qvldB84HQ0Qs%3D" -O "${OVFTOOL_INSTALLER}" && \
+	chmod 777 ${OVFTOOL_INSTALLER} && \
+	mkdir /opt/ovftool && \
+	mv ${OVFTOOL_INSTALLER} /opt/ovftool && \
+	./${OVFTOOL_INSTALLER} --eulas-agreed --console
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
