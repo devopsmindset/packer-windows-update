@@ -41,7 +41,7 @@ RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTA
 	chmod 777 ${OVFTOOL_INSTALLER} && \
 	mkdir /opt/ovftool && \
 	mv ${OVFTOOL_INSTALLER} /opt/ovftool && \
-	./${OVFTOOL_INSTALLER} --eulas-agreed --console
+	ls /opt/ovftool
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
