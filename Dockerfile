@@ -7,7 +7,7 @@ ENV PYTHON_VERSION_PREFIX=3.6
 ENV ANSIBLE_VERSION=2.9.13
 
 
-RUN cd /usr/local/share/ca-certificates && \
+RUN mkdir /usr/local/share/ca-certificates && cd /usr/local/share/ca-certificates && \
 	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_enterprise.crt -O roche_com_enterprise.crt && \
 	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_root.crt -O roche_com_root.crt && \
 	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/geo_trust.crt -O geo_trust.crt && \
