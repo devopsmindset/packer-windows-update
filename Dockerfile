@@ -36,21 +36,8 @@ RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip && \
 	pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
 
-RUN cd /usr/local/share/ca-certificates && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_enterprise.crt -O roche_com_enterprise.crt && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/roche_com_root.crt -O roche_com_root.crt && \
-	wget --no-check-certificate --no-verbose http://repository.kiosk.roche.com/public/certificates/roche.com/geo_trust.crt -O geo_trust.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20G3%20Root%20CA.crt -O roche_com_CA1_G3.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201%20-%20G2.crt -O roche_com_CA1_G2.crt && \
-	wget --no-check-certificate --no-verbose http://certinfo.roche.com/rootcerts/Roche%20Root%20CA%201.crt -O roche_com_CA1.crt && \
-	update-ca-certificates
+RUN wget http://repository.kiosk.roche.com/thirdparty-local/com.vmware/VMware-ovftool/4/4.4.1/Linux/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle
 
-
-RUN wget http://repository.kiosk.roche.com/thirdparty-local/com.vmware/VMware-ovftool/4/4.4.1/Linux/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle && \
-	chmod 777 VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle && \
-	mkdir /opt/ovftool && \
-	mv VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle /opt/ovftool && \
-    ./VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle --eulas-agreed --console
 
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
