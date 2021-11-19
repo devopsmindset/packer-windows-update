@@ -4,7 +4,7 @@ ENV PACKER_VERSION=1.5.6
 ENV GO_VERSION=1.13.3
 ENV PYTHON_VERSION=3.6.8
 ENV PYTHON_VERSION_PREFIX=3.6
-ENV ANSIBLE_VERSION=2.9.27
+ENV ANSIBLE_VERSION=2.9.13
 ENV OVFTOOL_VERSION=4.4.1-16812187
 ENV OVFTOOL_INSTALLER=VMware-ovftool-${OVFTOOL_VERSION}-lin.x86_64.bundle
 
@@ -51,11 +51,6 @@ RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 ENV GOROOT /usr/local/go
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
-
-# Install AWS Cli
-RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \ 
-	unzip awscli-exe-linux-x86_64.zip && \
-	./aws/install
 
 # Create config folders
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
