@@ -31,11 +31,6 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	./configure && \
 	make altinstall
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install
-
-
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip && \
 	pip${PYTHON_VERSION_PREFIX} install cryptography && \
 	pip${PYTHON_VERSION_PREFIX} install pywinrm && \
@@ -56,6 +51,11 @@ RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 ENV GOROOT /usr/local/go
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
+
+# Install AWS Cli
+RUN wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
 
 # Create config folders
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
