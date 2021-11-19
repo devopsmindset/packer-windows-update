@@ -53,9 +53,9 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 # Install AWS Cli
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
+RUN wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" && \ 
+	unzip awscli-exe-linux-x86_64.zip && \
+	./aws/install
 
 # Create config folders
 RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
