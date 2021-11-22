@@ -36,7 +36,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip
 RUN pip${PYTHON_VERSION_PREFIX} install cryptography
 RUN pip${PYTHON_VERSION_PREFIX} install pywinrm
-RUN LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
+#RUN LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 #RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
