@@ -43,6 +43,11 @@ RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTA
 	mv ${OVFTOOL_INSTALLER} /opt/ovftool && \
 	./opt/ovftool/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle --eulas-agreed --console
 
+# Install AWS Cli
+RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \ 
+	unzip awscli-exe-linux-x86_64.zip && \
+	./aws/install
+
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 	tar -xvf go${GO_VERSION}.linux-amd64.tar.gz && \
 	mv go /usr/local
