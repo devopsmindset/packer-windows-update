@@ -46,7 +46,7 @@ RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTA
 	mv ${OVFTOOL_INSTALLER} /opt/ovftool && \
 	./opt/ovftool/VMware-ovftool-4.4.1-16812187-lin.x86_64.bundle --eulas-agreed --console
 
-# Install AWS Cli
+# Install AWS Cli 2
 RUN wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip && \ 
 	unzip awscli-exe-linux-x86_64.zip && \
 	./aws/install
