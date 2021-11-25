@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - master
-      - feature/ovftool    
+      - feature/ovftoolansible    
 
 jobs:
   push_to_registry:
