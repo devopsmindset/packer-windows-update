@@ -37,7 +37,7 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	make altinstall
 
 RUN apt-get -y update
-RUN apt-get -y install software-properties-common
+RUN apt-get -y install python-software-properties
 RUN add-apt-repository --yes --update ppa:ansible/ansible
 RUN apt-get -y install ansible
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip
