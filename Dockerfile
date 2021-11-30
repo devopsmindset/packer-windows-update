@@ -7,9 +7,9 @@ ENV PYTHON_VERSION_PREFIX=3.6
 ENV ANSIBLE_VERSION=2.9.13
 ENV OVFTOOL_VERSION=4.4.1-16812187
 ENV OVFTOOL_INSTALLER=VMware-ovftool-${OVFTOOL_VERSION}-lin.x86_64.bundle
-RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+ENV PYHTONIOENCODING=UTF-8
 
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
