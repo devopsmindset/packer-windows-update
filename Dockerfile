@@ -36,12 +36,16 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 	./configure && \
 	make altinstall
 
+RUN apt-get -y update
+RUN apt-get -y install software-properties-common
+RUN add-apt-repository --yes --update ppa:ansible/ansible
+RUN apt-get -y install ansible
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip
 RUN pip${PYTHON_VERSION_PREFIX} install cryptography
 RUN pip${PYTHON_VERSION_PREFIX} install pywinrm
 #RUN LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 #test change for workflow
-RUN pip${PYTHON_VERSION_PREFIX} install ansible 
+#RUN pip${PYTHON_VERSION_PREFIX} install ansible 
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
 RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTALLER}?sv=2020-04-08&si=ovftools-17859976E99&sr=b&sig=xWlrYFVsUg1QYayZ3H9g1qHt%2BKcRWY3qvldB84HQ0Qs%3D" -O "${OVFTOOL_INSTALLER}" && \
