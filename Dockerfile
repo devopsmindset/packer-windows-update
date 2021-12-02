@@ -40,6 +40,7 @@ RUN pip${PYTHON_VERSION_PREFIX} install pywinrm
 RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
+
 RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTALLER}?sv=2020-04-08&si=ovftools-17859976E99&sr=b&sig=xWlrYFVsUg1QYayZ3H9g1qHt%2BKcRWY3qvldB84HQ0Qs%3D" -O "${OVFTOOL_INSTALLER}" && \
 	chmod 777 ${OVFTOOL_INSTALLER} && \
 	mkdir /opt/ovftool && \
@@ -65,5 +66,8 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin /root/.gdrive
 
 # Install gDrive
 RUN go get github.com/prasmussen/gdrive
+
+# Install govc
+RUN curl -L -o - https://github.com/vmware/govmomi/releases/latest/download/govc_Linux_x86_64.tar.gz | tar -C /usr/local/bin -xvzf - govc
 
 ENTRYPOINT ["/bin/bash"]
