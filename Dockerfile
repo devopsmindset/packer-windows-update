@@ -7,11 +7,10 @@ ENV PYTHON_VERSION_PREFIX=3.10
 ENV ANSIBLE_VERSION=2.9.13
 ENV OVFTOOL_VERSION=4.4.1-16812187
 ENV OVFTOOL_INSTALLER=VMware-ovftool-${OVFTOOL_VERSION}-lin.x86_64.bundle
-RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
+RUN apt-get update && apt-get install -y locales && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
 
 RUN apt-get -y update && apt-get -y install wget && apt-get -y install tar && apt-get -y install git && apt-get -y install unzip && apt-get -y install zip && apt-get -y install curl && \
     wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
@@ -38,11 +37,11 @@ RUN apt-get -y update && apt-get -y install build-essential && \
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade pip
 RUN pip${PYTHON_VERSION_PREFIX} install cryptography
 RUN pip${PYTHON_VERSION_PREFIX} install pywinrm
-#RUN LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 RUN pip${PYTHON_VERSION_PREFIX} install ansible==${ANSIBLE_VERSION}
 RUN pip${PYTHON_VERSION_PREFIX} install --upgrade azure-storage-blob
 
 
+# Install OVFTool
 RUN wget "https://lteblobinfinity.blob.core.windows.net/ovftools/${OVFTOOL_INSTALLER}?sv=2020-04-08&si=ovftools-17859976E99&sr=b&sig=xWlrYFVsUg1QYayZ3H9g1qHt%2BKcRWY3qvldB84HQ0Qs%3D" -O "${OVFTOOL_INSTALLER}" && \
 	chmod 777 ${OVFTOOL_INSTALLER} && \
 	mkdir /opt/ovftool && \
